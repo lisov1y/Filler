@@ -1,4 +1,4 @@
-NAME = mstupnik.fillit
+NAME = players/mstupnik.filler
 SRC = src/*.c
 FLAGS = -Wall -Wextra -Werror
 LIB = includes/ft_libftprintf/libftprintf.a
