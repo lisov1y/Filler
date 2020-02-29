@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mstupnik <mstupnik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/07 15:03:18 by mstupnik          #+#    #+#             */
-/*   Updated: 2020/02/20 16:12:19 by mstupnik         ###   ########.fr       */
+/*   Created: 2020/02/18 20:49:36 by mstupnik          #+#    #+#             */
+/*   Updated: 2020/02/20 16:08:45 by mstupnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-int		main(void)
+void	piece_free(t_filler *flr)
 {
-	t_filler	*flr;
-	char		*info;
+	int i;
 
-	flr = (t_filler *)malloc(sizeof(t_filler));
-	info = NULL;
-	get_next_line(0, &info);
-	pl_num(flr, info);
-	ft_strdel(&info);
-	get_next_line(0, &info);
-	map_num(flr, info);
-	mapalloc(flr);
-	ft_strdel(&info);
-	while (get_next_line(0, &info))
-		process(flr, info);
-	map_free(flr);
+	i = 0;
+	while (i < flr->px_max)
+		free(flr->pc[i++]);
+	free(flr->pc);
+}
+
+void	map_free(t_filler *flr)
+{
+	int i;
+
+	i = 0;
+	while (i < flr->x_max)
+		free(flr->map[i++]);
+	free(flr->map);
+	i = 0;
+	while (i < flr->x_max)
+		free(flr->hmap[i++]);
+	free(flr->hmap);
+	free(flr);
 }
